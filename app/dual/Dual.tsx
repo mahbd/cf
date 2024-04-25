@@ -6,9 +6,7 @@ import SideBar from "@/app/dual/SideBar";
 import RenderChats from "@/app/dual/RenderChats";
 
 const DualPage = ({ users }: { users: CFUser[] }) => {
-  users.sort(
-      (a, b) => a.handle.localeCompare(b.handle)
-  );
+  users.sort((a, b) => a.handle.localeCompare(b.handle));
   const usersHash = users.map((user) => user.handle).join(";");
 
   // @ts-ignore
@@ -21,13 +19,30 @@ const DualPage = ({ users }: { users: CFUser[] }) => {
       <SelectUserPopup handles={users.map((user) => user.handle)} />
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <label htmlFor="my-drawer-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="inline-block w-6 h-6 stroke-current drawer-button lg:hidden absolute m-2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </label>
         <div className="drawer-content flex flex-col">
           <div className={"overflow-y-scroll"} style={{ height: totalHeight }}>
             <RenderChats users={users} />
           </div>
 
-          <div className={"flex justify-center align-middle"}>
-            <MessageForm usersHash={usersHash} />
+          <div className={"fixed bottom-0 w-full"}>
+            <div className="flex justify-center">
+              <MessageForm usersHash={usersHash} />
+            </div>
           </div>
         </div>
         <div className="drawer-side">

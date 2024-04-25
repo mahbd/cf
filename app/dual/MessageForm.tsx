@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { sendMessage} from "@/app/dual/actions";
+import { sendMessage } from "@/app/dual/actions";
 
 interface Props {
   usersHash: string;
@@ -9,16 +9,18 @@ const MessageForm = ({ usersHash }: Props) => {
   const [message, setMessage] = useState<string>("");
 
   return (
-    <div
-      className="chat-form bottom-0 absolute w-full md:w-96 h-24"
-      style={{ margin: "0 auto" }}
-    >
+    <div className="chat-form w-full bottom-0 md:w-96 h-24">
       <div className={"flex"}>
         <textarea
           id={"message-area"}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Enter your message"
-          className="textarea textarea-primary textarea-bordered rounded-2xl w-full h-auto"
+          className="textarea textarea-primary textarea-bordered rounded-2xl w-full"
+          onKeyUp={(e) => {
+            if (e.key === "Enter") {
+              sendMessage(message, usersHash);
+            }
+          }}
         />
         <button
           disabled={message === ""}

@@ -39,12 +39,20 @@ const RenderChats = ({ users }: Props) => {
     userMap.set(user.handle, user);
   }
 
+  useEffect(() => {
+    const maxIndex = messages.length - 1;
+    if (maxIndex >= 0) {
+      const element = document.getElementById(`chat-${maxIndex}`);
+      element?.scrollIntoView();
+    }
+  }, [messages.length]);
+
   return (
-    <div className={"mx-10"}>
+    <ul className={"mx-10"}>
       {messages.map((message, index) => {
         if (handle == message.handle)
           return (
-            <div key={index} className={`chat chat-end`}>
+            <div id={`chat-${index}`} key={index} className={`chat chat-end`}>
               <div className="chat-image avatar">
                 <div className="w-10 rounded-full">
                   <img
@@ -60,7 +68,7 @@ const RenderChats = ({ users }: Props) => {
           );
         if (message.handle == "BOT") {
           return (
-            <div key={index} className={`chat chat-start`}>
+            <div id={`chat-${index}`} key={index} className={`chat chat-start`}>
               <div className={`chat-bubble chat-bubble-warning`}>
                 {message.message}
               </div>
@@ -68,7 +76,7 @@ const RenderChats = ({ users }: Props) => {
           );
         }
         return (
-          <div key={index} className={`chat chat-start`}>
+          <div id={`chat-${index}`} key={index} className={`chat chat-start`}>
             <div className="chat-image avatar">
               <div className="w-10 rounded-full">
                 <img
@@ -83,7 +91,7 @@ const RenderChats = ({ users }: Props) => {
           </div>
         );
       })}
-    </div>
+    </ul>
   );
 };
 
