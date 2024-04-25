@@ -15,6 +15,16 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: [
+      {
+        forest: {
+          ...require("daisyui/src/theming/themes")["forest"],
+          "--rounded-btn": "0.6rem",
+        },
+      },
+    ],
+  },
 };
 export default config;
