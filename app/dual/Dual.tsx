@@ -19,12 +19,12 @@ const DualPage = ({ users }: { users: CFUser[] }) => {
       <SelectUserPopup handles={users.map((user) => user.handle)} />
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <label htmlFor="my-drawer-2">
+        <label htmlFor="my-drawer-2 fixed">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            className="inline-block w-6 h-6 stroke-current drawer-button lg:hidden absolute m-2"
+            className="inline-block w-6 h-6 stroke-current drawer-button lg:hidden m-2"
           >
             <path
               strokeLinecap="round"
