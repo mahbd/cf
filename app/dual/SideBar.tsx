@@ -115,13 +115,14 @@ const ProblemSection = ({ users, setIsWin }: ProblemSectionProps) => {
         <button
           className="btn btn-sm btn-success mt-4 ms-2"
           onClick={async () => {
+            setIsLoading(true);
             const res = await markComplete(currentUser, problem);
             if (res) {
               await onClearProblem();
               sendMessage(
                 `BOT: ${problem.name} solved by ${currentUser.handle}`,
                 usersHash,
-                "BOT",
+                "BOT"
               );
             } else {
               setIsLoading(false);
